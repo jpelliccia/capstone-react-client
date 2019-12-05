@@ -54,7 +54,7 @@ const ExerciseForm = ({ exercise, handleSubmit, handleChange, cancelPath }) => (
 
         <Button variant="outline-success" type="submit">Submit</Button>
         <Link to={cancelPath}>
-          <Button variant="outline-danger" type="button">Cancel</Button>
+          <Button variant="outline-danger" className="float-right" type="button">Cancel</Button>
         </Link>
       </Form>
     </div>
