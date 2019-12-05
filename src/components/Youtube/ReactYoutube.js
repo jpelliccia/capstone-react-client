@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import YouTube from 'react-youtube'
+import '../Exercises/Exercises.scss'
 
 class ReactYouTube extends Component {
   videoOnReady (event) {
@@ -23,7 +24,7 @@ class ReactYouTube extends Component {
             opts={opts}
             onReady={this.videoOnReady}
           />
-          <p>{this.props.caption}</p>
+          <p className="text-center">{this.props.caption}</p>
         </div>
       </div>
     )

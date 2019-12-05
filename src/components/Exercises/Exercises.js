@@ -28,7 +28,7 @@ const Exercises = props => {
         <Card.Text className="cardtext">
           {exercise.name}
         </Card.Text>
-        <Button className="mb-2" href={`#/exercises/${exercise.id}`} variant="outline-light">View Workout</Button>
+        <Button className="viewbutton mb-2" href={`#/exercises/${exercise.id}`} variant="outline-light">View Workout</Button>
         <Card.Footer style={{ color: 'green', fontSize: '1.5rem' }}>
           {dateFormat(new Date(exercise.date))}
         </Card.Footer>
