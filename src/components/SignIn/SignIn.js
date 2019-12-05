@@ -76,10 +76,10 @@ class SignIn extends Component {
               />
             </Form.Group>
             <Button
-              variant="primary"
+              variant="success"
               type="submit"
             >
-              Submit
+              Log In
             </Button>
           </Form>
         </div>

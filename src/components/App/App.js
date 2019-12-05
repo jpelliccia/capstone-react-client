@@ -8,6 +8,11 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+import Exercises from '../Exercises/Exercises.js'
+import Exercise from '../Exercises/Exercise.js'
+import ExerciseCreate from '../Exercises/ExerciseCreate.js'
+import ExerciseEdit from '../Exercises/ExerciseEdit.js'
+import Home from '../Home/Home.js'
 
 class App extends Component {
   constructor () {
@@ -45,6 +50,9 @@ class App extends Component {
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
+          <Route exact path='/' render={() => (
+            <Home alert={this.alert} setUser={this.setUser} />
+          )} />
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
@@ -54,6 +62,18 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
+          <AuthenticatedRoute user={user} exact path='/exercises' render={() => (
+            <Exercises alert={this.alert} user={user} />
+          )}/>
+          <AuthenticatedRoute user={user} path='/exercises/:id' render={() => (
+            <Exercise alert={this.alert} user={user} />
+          )}/>
+          <AuthenticatedRoute user={user} path='/create-exercise' render={() => (
+            <ExerciseCreate alert={this.alert} user={user} />
+          )}/>
+          <AuthenticatedRoute user={user} path='/exercises/:id/edit' render={() => (
+            <ExerciseEdit alert={this.alert} user={user} />
+          )}/>
         </main>
       </Fragment>
     )
