@@ -24,10 +24,12 @@ const ExerciseCreate = props => {
       data: { exercise }
     })
       .then(response => {
-        props.alert({ heading: 'Success', message: 'You logged an exercise!', variant: 'success' })
+        props.alert({ heading: 'Success', message: 'You created an exercise!', variant: 'success' })
         props.history.push(`/exercises/${response.data.exercise.id}`)
       })
-      .catch(console.error)
+      .catch(() => {
+        props.alert({ heading: 'Failure', message: 'Create failed', variant: 'danger' })
+      })
   }
 
   return (
@@ -36,6 +38,7 @@ const ExerciseCreate = props => {
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       cancelPath={'/exercises'}
+      message={'Create an exercise!'}
     />
   )
 }

@@ -12,8 +12,8 @@ const Home = () => {
           alt="First slide"
         />
         <Carousel.Caption className="image1">
-          <h2>betterYOU Workout Log!</h2>
-          <p>Helping you keep your workouts logged and consistent</p>
+          <h2 className="slide1">betterYOU Workout Log!</h2>
+          <p className="slide1caption">Helping you keep your workouts logged and consistent</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -24,8 +24,7 @@ const Home = () => {
         />
 
         <Carousel.Caption>
-          <h3>Create your own exercises!</h3>
-          <p>Create a custom made workout that you did that day!</p>
+          <h3 className="slide2">Create a custom made workout!</h3>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -36,8 +35,8 @@ const Home = () => {
         />
 
         <Carousel.Caption>
-          <h2 className="captiontest">Consistency is KEY!</h2>
-          <p>Log all your workouts to see your progress for each day.</p>
+          <h2 className="slide3">Consistency is KEY!</h2>
+          <p className="slide3caption">Log all your workouts to see your progress for each day.</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

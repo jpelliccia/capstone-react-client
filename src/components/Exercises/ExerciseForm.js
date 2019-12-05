@@ -2,10 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 
-const ExerciseForm = ({ exercise, handleSubmit, handleChange, cancelPath }) => (
+const ExerciseForm = ({ exercise, handleSubmit, handleChange, cancelPath, message }) => (
   <div className="row">
     <div className="col-sm-10 col-md-8 mx-auto mt-5">
-      <h3>Create an exercise!</h3>
+      <h3>{message}</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Label htmlFor="name">Name</Form.Label>
         <Form.Control
@@ -52,9 +52,9 @@ const ExerciseForm = ({ exercise, handleSubmit, handleChange, cancelPath }) => (
           onChange={handleChange}
         />
 
-        <Button variant="outline-success" type="submit">Submit</Button>
+        <Button variant="success" type="submit">Submit</Button>
         <Link to={cancelPath}>
-          <Button variant="outline-danger" className="float-right" type="button">Cancel</Button>
+          <Button variant="danger" className="float-right" type="button">Cancel</Button>
         </Link>
       </Form>
     </div>

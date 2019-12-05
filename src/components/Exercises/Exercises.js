@@ -1,8 +1,10 @@
 import React, { useState, useEffect, Fragment } from 'react'
 // import { Link } from 'react-router-dom'
-import { CardDeck, Card, Button, Col } from 'react-bootstrap'
+import { Card, Button, Container } from 'react-bootstrap'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import './Exercises.scss'
+import dateFormat from '../../dateFormat.js'
 
 const Exercises = props => {
   const [exercises, setExercises] = useState([])
@@ -21,26 +23,28 @@ const Exercises = props => {
   }, [])
 
   const exercisesJsx = exercises.map(exercise => (
-    <div className="row" key={exercise.id}>
-      <div className="col-sm-10 col-md-8 mx-auto mt-5">
-        <CardDeck>
-          <Card bg="light" text="black">
-            <Card.Body>
-              <Card.Text>
-                <Col>{exercise.name} on {exercise.date}</Col>
-              </Card.Text>
-              <Button href={`#/exercises/${exercise.id}`} variant="outline-dark">View Workout</Button>
-            </Card.Body>
-          </Card>
-        </CardDeck>
-      </div>
-    </div>
+    <Card className="cardlog m-4 p-0" bg="dark" text="white" key={exercise.id}>
+      <Card.Body className="text-center">
+        <Card.Text className="cardtext">
+          {exercise.name}
+        </Card.Text>
+        <Button className="mb-2" href={`#/exercises/${exercise.id}`} variant="outline-light">View Workout</Button>
+        <Card.Footer style={{ color: 'green', fontSize: '1.5rem' }}>
+          {dateFormat(new Date(exercise.date))}
+        </Card.Footer>
+      </Card.Body>
+    </Card>
   ))
+  // }
 
   return (
     <Fragment>
-      <h1>Exercise Log</h1>
-      {exercisesJsx}
+      <h1 className="text-center logtitle">Exercise Log</h1>
+      <Container className="d-flex flex-row justify-content-center">
+        <div className="row d-flex flex-row justify-content-center">
+          {exercisesJsx}
+        </div>
+      </Container>
     </Fragment>
   )
 }

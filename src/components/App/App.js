@@ -13,6 +13,8 @@ import Exercise from '../Exercises/Exercise.js'
 import ExerciseCreate from '../Exercises/ExerciseCreate.js'
 import ExerciseEdit from '../Exercises/ExerciseEdit.js'
 import Home from '../Home/Home.js'
+import './App.scss'
+import Tutorials from '../Tutorials/Tutorials.js'
 
 class App extends Component {
   constructor () {
@@ -73,6 +75,9 @@ class App extends Component {
           )}/>
           <AuthenticatedRoute user={user} path='/exercises/:id/edit' render={() => (
             <ExerciseEdit alert={this.alert} user={user} />
+          )}/>
+          <AuthenticatedRoute user={user} path='/tutorials' render={() => (
+            <Tutorials alert={this.alert} user={user} />
           )}/>
         </main>
       </Fragment>

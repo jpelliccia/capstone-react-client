@@ -8,7 +8,6 @@ const Exercise = props => {
   const [exercise, setExercise] = useState('')
   const [deleted, setDeleted] = useState(false)
   const userId = props.user.id
-  console.log(userId)
 
   useEffect(() => {
     axios({
@@ -19,8 +18,9 @@ const Exercise = props => {
       }
     })
       .then(res => setExercise(res.data.exercise))
-      .then(() => props.alert({ heading: 'Success', message: 'You selected an exercise!', variant: 'success' }))
-      .catch(console.error)
+      .catch(() => {
+        props.alert({ heading: 'Ouch', message: 'There was an error, try again.', variant: 'danger' })
+      })
   }, [])
 
   const destroy = () => {
@@ -32,7 +32,12 @@ const Exercise = props => {
       }
     })
       .then(() => setDeleted(true))
-      .catch(console.error)
+      .then(() => {
+        props.alert({ heading: 'Success', message: 'Exercise Deleted!', variant: 'success' })
+      })
+      .catch(() => {
+        props.alert({ heading: 'Failure', message: 'Delete failed', variant: 'danger' })
+      })
   }
 
   if (!exercise) {
@@ -54,14 +59,16 @@ const Exercise = props => {
         <ListGroup.Item>Weight: {exercise.weight}</ListGroup.Item>
         <ListGroup.Item>Date: {exercise.date}</ListGroup.Item>
       </ListGroup>
-      <Link to={`/exercises/${props.match.params.id}/edit`}>
-        <Button variant="outline-warning" className="float-left">Edit</Button>
-      </Link>
-      <Link to={'/exercises'}>
-        <Button to="/exercises" className="center-block">Back to exercise log</Button>
-      </Link>
-      {exercise && userId === exercise.owner && <Button variant="danger">Delete</Button>}
-      <Button variant="outline-danger" className="float-right" onClick={destroy}>Delete Exercise</Button>
+      <div className="d-flex flex-row justify-content-between">
+        <Link to={`/exercises/${props.match.params.id}/edit`}>
+          <Button variant="warning">Edit</Button>
+        </Link>
+        <Link to={'/exercises'}>
+          <Button to="/exercises" variant="secondary" text="center" className="align-self-center mx-auto">Back to exercise log</Button>
+        </Link>
+        {exercise && userId === exercise.owner && <Button variant="danger">Delete</Button>}
+        <Button variant="danger" onClick={destroy}>Delete Exercise</Button>
+      </div>
     </Fragment>
   )
 }

@@ -18,7 +18,9 @@ const ExerciseEdit = props => {
       }
     })
       .then(res => setExercise(res.data.exercise))
-      .catch(console.error)
+      .catch(() => {
+        props.alert({ heading: 'Ouch', message: 'There was an error, try again.', variant: 'danger' })
+      })
   }, [])
 
   const handleChange = event => {
@@ -38,7 +40,12 @@ const ExerciseEdit = props => {
       data: { exercise }
     })
       .then(() => setUpdated(true))
-      .catch(console.error)
+      .then(() => {
+        props.alert({ heading: 'Success', message: 'Updated succesfully!', variant: 'success' })
+      })
+      .catch(() => {
+        props.alert({ heading: 'Failure', message: 'Update failed!', variant: 'danger' })
+      })
   }
 
   if (updated) {
@@ -52,6 +59,7 @@ const ExerciseEdit = props => {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         cancelPath={`/exercises/${props.match.params.id}`}
+        message={'Edit your exercise'}
       />
     </Fragment>
   )
